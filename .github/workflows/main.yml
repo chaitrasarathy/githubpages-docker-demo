@@ -19,25 +19,24 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-     - name: Prepare build environment
+      - name: Prepare build environment
         run:
           mkdir -p build
           touch build/.nojekyll
           
-    - name: Run pandoc
-      uses: docker://pandoc/core:2.12
-      with:
-        args: >-
-          --standalone 
-          --output=build/index.html
-          README.md
+      - name: Run pandoc
+        uses: docker://pandoc/core:2.12
+        with:
+         args: >-
+           --standalone 
+           --output=build/index.html
+           README.md
     
-    - name: Deploy on Github Pages
-    - uses: JamesIves/github-pages-deploy-action@4.1.0
-      with:
-        branch: gh-pages
-        folder: build
+      - name: Deploy on Github Pages
+      - uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: build
           
           
           
